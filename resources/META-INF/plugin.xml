@@ -25,16 +25,12 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <toolWindow id="Maya" anchor="bottom" factoryClass="com.krupa.adrian.PyMayaCharm.console.LogWindow"/>
-        <!--<projectService serviceImplementation="com.krupa.adrian.PyMayaCharm.settings.SettingsProvider"/>-->
+        <projectService serviceImplementation="com.krupa.adrian.PyMayaCharm.settings.SettingsProvider"/>
         <!--<projectConfigurable instance="com.krupa.adrian.PyMayaCharm.settings.Config"/>-->
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
-        <action id="com.krupa.adrian.PyMayaCharm.actions.ConnectWithMayaAction"
-                class="com.krupa.adrian.PyMayaCharm.actions.ConnectWithMayaAction" text="Connect with Maya">
-            <add-to-group group-id="RunMenu"/>
-        </action>
         <action class="com.krupa.adrian.PyMayaCharm.actions.SendToMayaAction" 
                 id="com.krupa.adrian.PyMayaCharm.actions.SendToMayaAction" text="Send code to Maya"
                 icon="/icons/maya.png">

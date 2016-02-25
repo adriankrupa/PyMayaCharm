@@ -3,8 +3,6 @@ package com.krupa.adrian.PyMayaCharm.console;
 import com.intellij.diagnostic.logging.LogContentPreprocessor;
 import com.intellij.diagnostic.logging.LogFragment;
 import com.intellij.execution.process.ProcessOutputTypes;
-import com.intellij.openapi.util.Key;
-import com.krupa.adrian.PyMayaCharm.resources.Strings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +10,12 @@ import java.util.List;
 public class LogPreProcessor implements LogContentPreprocessor {
     @Override
     public List<LogFragment> parseLogLine(String s) {
+        System.out.println("Processing " + s.length() + ":" + s);
+        if ((s.length() < 7 && s.contains("None")) || (s.length() < 3 && s.trim().length() == 0)) {
+            return new ArrayList<>();
+        }
         final List<LogFragment> lFrag = new ArrayList<>();
-        boolean checks = s.startsWith(Strings.PY_STD_ERR) || s.startsWith(Strings.MEL_STD_ERR) ||
-                s.startsWith(Strings.MEL_STD_WRN) || s.startsWith(Strings.PY_STD_WRN);
-        Key outType = (checks) ? ProcessOutputTypes.STDERR : ProcessOutputTypes.STDOUT;
-        lFrag.add(new LogFragment(s, outType));
+        lFrag.add(new LogFragment(s, ProcessOutputTypes.STDOUT));
         return lFrag;
     }
 }
